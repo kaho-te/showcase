@@ -36,7 +36,7 @@ class AccountController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($user)
+    public function show(string $user)
     {
         $account = User::where('id',$user)
         ->with('account')
