@@ -35,9 +35,11 @@ class WarehouseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Warehouse $warehouse)
+    public function show()
     {
-        //
+        $warehouses = Warehouse::where('user_id',auth()->id())->latest()->get();
+
+        return response()->json($warehouses);
     }
 
     /**
