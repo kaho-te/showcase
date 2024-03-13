@@ -20,6 +20,7 @@ class PostController extends Controller
             ->with('user')
             ->with('comments.user')
             ->with('warehouse')
+            ->with('liked:name')
             ->latest()
             ->get();
             
