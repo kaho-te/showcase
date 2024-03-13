@@ -29,7 +29,12 @@ class WarehouseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = $request->user();
+
+        $warehouse = $user->warehouses()->create([
+            'threed_data' => $request->threed_data
+        ]);
+        return response()->json($warehouse, 201);
     }
 
     /**
