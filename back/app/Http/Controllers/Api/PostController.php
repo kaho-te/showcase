@@ -23,7 +23,7 @@ class PostController extends Controller
             ->with('liked:name')
             ->latest()
             ->get();
-            
+
         return response()->json($posts);
     }
 
@@ -40,7 +40,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = $request->user();
+
+        $post = $user->posts()->create([
+            'text' => $request->text,
+            'warehouse_id' => $request->warehouse_id
+        ]);
+        return response()->json($post, 201);
     }
 
     /**
