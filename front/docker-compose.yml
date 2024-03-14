@@ -5,6 +5,6 @@ services:
     build: ./
     volumes:
       - ./src:/usr/app
-    command: npm run dev
+    command: sh -c "yarn dev"
     ports:
       - "3000:3000"
