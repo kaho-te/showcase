@@ -65,6 +65,16 @@ class User extends Authenticatable
 
     public function account()
     {
-        return $this->belongsTo(Account::class);
+        return $this->hasOne(Account::class);
+    }
+
+    public function followings()
+    {
+        return $this->belongsToMany(self::class, "follows", "user_id", "following_id")->withTimestamps();
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(self::class, "follows", "following_id", "user_id")->withTimestamps();
     }
 }
