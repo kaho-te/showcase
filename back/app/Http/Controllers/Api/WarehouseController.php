@@ -29,7 +29,20 @@ class WarehouseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = $request->user();
+        $userId = $user->id;
+
+        if(is_null($request->file('threed_data'))){
+            return response()->json('3Dデータが指定されていません。');
+        }
+
+        $threedFile = $request->file('threed_data')->store('public/threed/' . $userId);
+        $filename = basename($threedFile);
+
+        $warehouse = $user->warehouses()->create([
+            'threed_data' => $filename
+        ]);
+        return response()->json($warehouse, 201);
     }
 
     /**
