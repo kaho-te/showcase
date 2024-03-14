@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Models\Comment;
+use App\Models\Follow;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -12,7 +15,16 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $followings = Follow::where('user_id',auth()->id())->get(['following_id'])->toArray();
+        $posts = Post::whereIn('user_id', $followings)
+            ->with('user')
+            ->with('comments.user')
+            ->with('warehouse')
+            ->with('liked:name')
+            ->latest()
+            ->get();
+            
+        return response()->json($posts);
     }
 
     /**

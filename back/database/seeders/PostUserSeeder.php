@@ -15,11 +15,15 @@ class PostUserSeeder extends Seeder
     {
         DB::table('post_user')->insert([
             'post_id' => 1,
+            'user_id' => 2
+        ]);
+        DB::table('post_user')->insert([
+            'post_id' => 2,
             'user_id' => 1
         ]);
         DB::table('post_user')->insert([
             'post_id' => 2,
-            'user_id' => 2
+            'user_id' => 3
         ]);
     }
 }
