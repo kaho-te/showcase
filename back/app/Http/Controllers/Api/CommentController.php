@@ -29,7 +29,13 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = $request->user();
+
+        $comment = $user->comments()->create([
+            'text' => $request->text,
+            'post_id' => $request->post_id
+        ]);
+        return response()->json($comment, 201);
     }
 
     /**

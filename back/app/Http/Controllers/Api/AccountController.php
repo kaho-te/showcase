@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Account;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller
@@ -35,9 +36,17 @@ class AccountController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Account $account)
+    public function show(string $user)
     {
-        //
+        $account = User::where('id',$user)
+        ->with('account')
+        ->with('posts.warehouse')
+        ->withCount('posts')
+        ->withCount('followers')
+        ->withCount('warehouses')
+        ->get();
+
+        return response()->json($account);
     }
 
     /**

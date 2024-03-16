@@ -9,6 +9,8 @@ class Warehouse extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['threed_data'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
