@@ -36,4 +36,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/account/{user}', [AccountController::class, 'show'])->name('account.show');
     Route::post('/posts/{post}/like', [PostLikeController::class, 'store']);
     Route::delete('/posts/{post}/like', [PostLikeController::class, 'destroy']);
-  });
+});
