@@ -23,5 +23,10 @@ class CommentSeeder extends Seeder
             'post_id' => 2,
             'user_id' => 3,
         ]);
+        Comment::create([
+            'text' => '投稿に対するコメント3',
+            'post_id' => 2,
+            'user_id' => 1,
+        ]);
     }
 }

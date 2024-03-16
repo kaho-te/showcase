@@ -25,5 +25,11 @@ class AccountSeeder extends Seeder
             'profile' => 'プロフィール文章２',
             'user_id' => 2,
         ]);
+        Account::create([
+            'icon' => 'dummy',
+            'mainstage_image' => 'dummy_stage',
+            'profile' => 'プロフィール文章3',
+            'user_id' => 3,
+        ]);
     }
 }

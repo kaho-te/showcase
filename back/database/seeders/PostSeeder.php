@@ -23,5 +23,15 @@ class PostSeeder extends Seeder
             'warehouse_id' => 2,
             'user_id' => 2,
         ]);
+        Post::create([
+            'text' => 'かっこいいモデルを見つけました',
+            'warehouse_id' => 3,
+            'user_id' => 3,
+        ]);
+        Post::create([
+            'text' => 'テスト投稿です',
+            'warehouse_id' => 4,
+            'user_id' => 1,
+        ]);
     }
 }

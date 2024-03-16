@@ -21,5 +21,9 @@ class FollowSeeder extends Seeder
             'user_id' => 2,
             'following_id' => 3
         ]);
+        DB::table('follows')->insert([
+            'user_id' => 1,
+            'following_id' => 3
+        ]);
     }
 }
