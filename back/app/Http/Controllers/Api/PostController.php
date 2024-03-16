@@ -29,6 +29,10 @@ class PostController extends Controller
             ->with('account')
             ->get();
 
+        $account = User::where('id',auth()->id())
+            ->with('account')
+            ->get();
+
         return response()->json(['post' => $posts, 'account' => $account]);
     }
 
