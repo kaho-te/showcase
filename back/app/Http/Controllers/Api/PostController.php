@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Follow;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -23,8 +24,12 @@ class PostController extends Controller
             ->with('liked:name')
             ->latest()
             ->get();
+
+        $account = User::where('id',auth()->id())
+            ->with('account')
+            ->get();
             
-        return response()->json($posts);
+        return response()->json(['post' => $posts, 'account' => $account]);
     }
 
     /**
