@@ -7,10 +7,11 @@ import React, { useEffect, useState } from 'react'
 import AddIcon from '@mui/icons-material/Add'
 import StarIcon from '@mui/icons-material/Star'
 import { useAuth } from '@/hooks/auth'
+import { collectGenerateParams } from 'next/dist/build/utils'
 
 const Profile = ({ user_id }) => {
     const { user } = useAuth({ middleware: 'auth' })
-
+    
     return (
         <AppLayout>
             <Head>
