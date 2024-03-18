@@ -11,6 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //外部キー制約を一旦無効化
+        Schema::disableForeignKeyConstraints();
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
             $table->string('icon');
@@ -19,6 +21,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
+        //外部キー制約を有効化
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

@@ -11,12 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //外部キー制約を一旦無効化
+        Schema::disableForeignKeyConstraints();
         Schema::create('warehouses', function (Blueprint $table) {
             $table->id();
             $table->string('threed_data');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
+        //外部キー制約を有効化
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
