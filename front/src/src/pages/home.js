@@ -1,27 +1,58 @@
 import AppLayout from '@/components/Layouts/AppLayout'
-import axios from 'axios'
+import laravelAxios from '@/lib/laravelAxios'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import 'swiper/css'
 import Link from 'next/link'
 import { dividerClasses } from '@mui/material'
+import { Canvas } from '@react-three/fiber'
+import {
+    Center,
+    OrbitControls,
+    PerspectiveCamera,
+    Stats,
+    useGLTF,
+} from '@react-three/drei'
 
 const Home = () => {
-    const [movies, setMovies] = useState([])
+    const [account, setAccount] = useState([])
+    const [posts, setPosts] = useState([])
 
-    // useEffect(() => {
-    //     const fetchMovies = async () => {
-    //         try {
-    //             const response = await axios.get('api/getPopularMovies')
-    //             console.log(response.data.results)
+    const Model = () => {
+        const { scene } = useGLTF('/threed/3/usagi.glb')
+        return (
+            <primitive
+                object={scene}
+                position={[0, 0, 0]}
+                scale={[0.5, 0.5, 0.5]}
+            />
+        )
+    }
 
-    //             setMovies(response.data.results)
-    //         } catch (error) {
-    //             console.log(error)
-    //         }
-    //     }
-    //     fetchMovies()
-    // }, [])
+    const Model2 = () => {
+        const { scene } = useGLTF('/threed/2/uchiwa_fan.glb')
+        return (
+            <primitive
+                object={scene}
+                position={[0, 0, 0]}
+                scale={[0.5, 0.5, 0.5]}
+            />
+        )
+    }
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await laravelAxios.get('api/posts')
+                console.log(response.data)
+
+                setPosts(response.data.post)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchPosts()
+    }, [])
 
     return (
         <AppLayout
@@ -30,35 +61,66 @@ const Home = () => {
                     <div className="flex justify-end">
                         <div className="mr-auto">SHOWCASE</div>
                         <div className="flex">
-                            <div>ハート</div>
-                            <div>紙飛行機</div>
+                            <img src="" alt="ハート" />
+                            <img src="" alt="紙飛行機" />
                         </div>
-                    </div>
-                    <div className="flex">
-                        <div>icon</div>
-                        <div>Postへの導線</div>
                     </div>
                 </div>
             }>
             <Head>
                 <title>home</title>
             </Head>
-            <div className="flex">
-                <img className="mr-auto" src="" alt="ユーザーアイコン" />
-                <div>・・・</div>
-            </div>
-            <div>3Dデータのサムネ</div>
-            <div className="flex">
-                <div className="mr-auto flex">
-                    <div>ハート</div>
-                    <div>コメント</div>
-                    <div>紙飛行機</div>
+            {posts.map(post => (
+                <div>
+                    <div className="flex">
+                        <img src="" alt="アイコン" />
+                        <div>{post.user.name}</div>
+                    </div>
+                    <Canvas style={{ background: 'gray' }}>
+                        {/* camera={{ position: [5, 5, 5], near: 0.05 }} */}
+                        <group>
+                            <Center>
+                                <Model2 />
+                            </Center>
+                        </group>
+                        <PerspectiveCamera
+                            makeDefault
+                            args={[
+                                35,
+                                window.innerWidth / window.innerHeight,
+                                0.1,
+                                2000,
+                            ]}
+                            position={[2, 2, 2]}
+                            fov={70}
+                        />
+                        <OrbitControls />
+                        <directionalLight position={[-10, 10, 10]} castShadow />
+                        <ambientLight intensity={1} />
+                        <pointLight position={[5, 5, 5]} />
+                    </Canvas>
+                    <div className="flex">
+                        <div className="flex mr-auto">
+                            <img src="" alt="ハート" />
+                            <img src="" alt="コメント" />
+                            <img src="" alt="紙飛行機" />
+                        </div>
+                        <img src="" alt="ブックマーク" />
+                    </div>
+                    <div className="flex">
+                        <div className="mr-1 font-bold">{post.user.name}</div>
+                        <div>{post.text}</div>
+                    </div>
+                    {post.comments.map(comment => (
+                        <div className="flex">
+                            <div className="font-bold mr-1">
+                                {comment.user.name}
+                            </div>
+                            <div>{comment.text}</div>
+                        </div>
+                    ))}
                 </div>
-                <div>ブックマーク</div>
-            </div>
-            <div>
-                コメント
-            </div>
+            ))}
         </AppLayout>
     )
 }
