@@ -61,8 +61,8 @@ const Home = () => {
                     <div className="flex justify-end">
                         <div className="mr-auto">SHOWCASE</div>
                         <div className="flex">
-                            <img className="mr-2 h-6" src="http://localhost/storage/image/icon/LikeGray.png" alt="ハート" />
-                            <img className="h-6" src="http://localhost/storage/image/icon/MessageGray.png" alt="紙飛行機" />
+                            <img className="mr-2 h-6" src="http://localhost/storage/image/Icon/LikeGray.png" alt="ハート" />
+                            <img className="h-6" src="http://localhost/storage/image/Icon/MessageGray.png" alt="紙飛行機" />
                         </div>
                     </div>
                 </div>
