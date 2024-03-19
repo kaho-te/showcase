@@ -19,7 +19,7 @@ const AppLayout = ({ header, children }) => {
                 <main className="m-4">{children}</main>
             </div>
             <footer className="mx-3 flex justify-between items-end">
-                <Footer />
+                <Footer user={user} />
             </footer>
         </div>
     )
