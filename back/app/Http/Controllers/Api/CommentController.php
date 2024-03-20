@@ -35,7 +35,7 @@ class CommentController extends Controller
             'text' => $request->text,
             'post_id' => $request->post_id
         ]);
-        return response()->json($comment, 201);
+        return response()->json($comment->load('user'), 201);
     }
 
     /**

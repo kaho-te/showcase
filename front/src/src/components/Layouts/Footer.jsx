@@ -7,34 +7,44 @@ const Footer = ({ user }) => {
 
     const { logout } = useAuth()
 
-    console.log(user)
     return (
         <>
-            <img
-                className="w-1/6 h-10"
-                src="http://localhost/storage/image/icon/MainStageGray.png"
-                alt=""
-            />
-            <img
-                className="w-1/6 h-10"
-                src="http://localhost/storage/image/icon/WorldGray.png"
-                alt=""
-            />
-            <img
-                className="w-1/6 h-10"
-                src="http://localhost/storage/image/icon/NewPostGray.png"
-                alt=""
-            />
-            <Link href="/home">
+            <Link
+                className="w-1/6 h-8 flex justify-center item-center"
+                href="#">
                 <img
-                    className="w-1/6 h-10"
+                    src="http://localhost/storage/image/icon/MainStageGray.png"
+                    alt=""
+                />
+            </Link>
+            <Link
+                className="w-1/6 h-8 flex justify-center item-center"
+                href="#">
+                <img
+                    src="http://localhost/storage/image/icon/WorldGray.png"
+                    alt=""
+                />
+            </Link>
+            <Link
+                className="w-1/6 h-8 flex justify-center item-center"
+                href="#">
+                <img
+                    src="http://localhost/storage/image/icon/NewPostGray.png"
+                    alt=""
+                />
+            </Link>
+            <Link
+                className="w-1/6 h-8 flex justify-center item-center"
+                href="/home">
+                <img
                     src="http://localhost/storage/image/icon/SnsGray.png"
                     alt=""
                 />
             </Link>
-            <Link href={`/profile/${user.id}`}>
+            <Link
+                className="w-1/6 h-8 flex justify-center item-center"
+                href={user ? `/profile/${user.id}` : '#'}>
                 <img
-                    className="w-1/6 h-10"
                     src="http://localhost/storage/image/icon/ProfileGray.png"
                     alt=""
                 />
