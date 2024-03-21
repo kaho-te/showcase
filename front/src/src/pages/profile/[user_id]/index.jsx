@@ -123,15 +123,16 @@ const Profile = () => {
                             display: 'grid',
                             gap: '10px',
                             gridTemplateColumns: '1fr 1fr 1fr',
+
                         }}>
                         {profiles.posts?.map((post, index) => (
                             <div className="w-full" key={index}>
                                 <img
                                     src={
-                                        'http://localhost/storage/threed/' +
+                                        'http://localhost/storage/image/' +
                                         user_id +
                                         '/' +
-                                        post.warehouse.threed_data
+                                        post.warehouse.thumbnail
                                     }
                                     alt=""
                                 />
