@@ -25,5 +25,9 @@ class PostUserSeeder extends Seeder
             'post_id' => 2,
             'user_id' => 3
         ]);
+        DB::table('post_user')->insert([
+            'post_id' => 2,
+            'user_id' => 4
+        ]);
     }
 }
