@@ -14,7 +14,6 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('posts', PostController::class);
-    Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
     Route::get('/warehouses', [WarehouseController::class, 'show'])->name('warehouses.show');
     Route::post('/warehouses', [WarehouseController::class, 'store'])->name('warehouses.store');
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
