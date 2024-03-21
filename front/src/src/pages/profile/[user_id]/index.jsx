@@ -4,14 +4,17 @@ import Head from 'next/head'
 import React, { useEffect, useRef, useState } from 'react'
 import { useAuth } from '@/hooks/auth'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
-const Profile = ({ user_id }) => {
+const Profile = () => {
     const { user } = useAuth({ middleware: 'auth' })
     const [profiles, setProfiles] = useState([])
     const videoRef = useRef(null)
-    user_id = 2;
+    const router = useRouter()
+    const { user_id } = router.query
 
     useEffect(() => {
+        if (router.isReady && user_id) {
         const fetchProfiles = async () => {
             try {
                 const response = await laravelAxios.get(
@@ -30,7 +33,8 @@ const Profile = ({ user_id }) => {
             }
         }
         fetchProfiles()
-    }, [])
+    }
+    }, [router.isReady, user_id])
 
     return (
         <AppLayout>
@@ -100,14 +104,14 @@ const Profile = ({ user_id }) => {
                 <div className="flex justify-around mt-7">
                     <div className="w-1/2 text-center">
                         <img
-                            src="http://localhost/storage/image/Cube Gray (2024_03_05 14_19_08 UTC).png"
+                            src="http://localhost/storage/image/Icon/3DItemGray.png"
                             alt=""
                             className="w-7 h-7 mx-auto"
                         />
                     </div>
                     <div className="w-1/2 text-center">
                         <img
-                            src="http://localhost/storage/image/360 Gray (2024_03_05 14_19_08 UTC).png"
+                            src="http://localhost/storage/image/Icon/360Gray.png"
                             alt=""
                             className="w-7 h-7 mx-auto"
                         />
