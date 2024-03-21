@@ -9,8 +9,6 @@ const Profile = ({ user_id }) => {
     const { user } = useAuth({ middleware: 'auth' })
     const [profiles, setProfiles] = useState([])
     const videoRef = useRef(null)
-    user_id = 2;
-    console.log(user);
 
     useEffect(() => {
         const fetchProfiles = async () => {
