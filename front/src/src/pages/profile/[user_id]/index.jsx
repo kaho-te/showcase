@@ -9,6 +9,7 @@ const Profile = ({ user_id }) => {
     const { user } = useAuth({ middleware: 'auth' })
     const [profiles, setProfiles] = useState([])
     const videoRef = useRef(null)
+    user_id = 2;
 
     useEffect(() => {
         const fetchProfiles = async () => {
@@ -59,7 +60,7 @@ const Profile = ({ user_id }) => {
                         />
                     </div>
                     <div className="w-full pl-3 text-center">
-                        <div className="flex justify-around ml-3">
+                        <div className="flex justify-around">
                             <div className="post-cnt text-center">
                                 <p className="font-bold">
                                     {profiles.posts_count}

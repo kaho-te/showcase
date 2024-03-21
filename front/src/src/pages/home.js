@@ -57,47 +57,49 @@ const Home = () => {
         try {
             const response = await laravelAxios.post('api/comments', {
                 text: comment,
-                post_id: open
-            });
-            console.log(response.data);
-            setComment(''); // Clear the comment input field after posting
+                post_id: open,
+            })
+            console.log(response.data)
+            setComment('') // Clear the comment input field after posting
             // 新しいコメントをpostsステートに追加する処理
             const updatedPosts = posts.map(post => {
                 if (post.id === open) {
                     return {
                         ...post,
-                        comments: [...post.comments, response.data]
-                    };
+                        comments: [...post.comments, response.data],
+                    }
                 }
-                return post;
-            });
-            setPosts(updatedPosts);
+                return post
+            })
+            setPosts(updatedPosts)
         } catch (error) {
-            console.log(error);
+            console.log(error)
         }
     }
 
     return (
-        <AppLayout
-            header={
-                <div className="font-semibold text-xl text-gray-800 leading-tight">
-                    <div className="flex justify-end">
-                        <div className="mr-auto">SHOWCASE</div>
-                        <div className="flex">
-                            <img
-                                className="mr-2 h-6"
-                                src="http://localhost/storage/image/Icon/LikeGray.png"
-                                alt="ハート"
-                            />
-                            <img
-                                className="h-6"
-                                src="http://localhost/storage/image/Icon/MessageGray.png"
-                                alt="紙飛行機"
-                            />
+        <AppLayout>
+            <header className="bg-white">
+                <div className="max-w-7xl mx-auto pt-6 px-4 sm:px-6 lg:px-8">
+                    <div className="font-semibold text-xl text-gray-800 leading-tight">
+                        <div className="flex justify-end">
+                            <div className="mr-auto">SHOWCASE</div>
+                            <div className="flex">
+                                <img
+                                    className="mr-2 h-6"
+                                    src="http://localhost/storage/image/Icon/LikeGray.png"
+                                    alt="ハート"
+                                />
+                                <img
+                                    className="h-6"
+                                    src="http://localhost/storage/image/Icon/MessageGray.png"
+                                    alt="紙飛行機"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
-            }>
+            </header>
             <Head>
                 <title>home</title>
             </Head>
