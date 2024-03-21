@@ -3,30 +3,13 @@ import laravelAxios from '@/lib/laravelAxios'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import 'swiper/css'
-import { Canvas } from '@react-three/fiber'
-import {
-    Center,
-    OrbitControls,
-    PerspectiveCamera,
-    useGLTF,
-} from '@react-three/drei'
 import { Box, Button, Modal, TextareaAutosize, Typography } from '@mui/material'
+import Link from 'next/link'
 
 const Home = () => {
     const [posts, setPosts] = useState([])
     const [open, setOpen] = useState(null)
     const [comment, setComment] = useState('')
-
-    const Model = () => {
-        const { scene } = useGLTF('/threed/3/usagi.glb')
-        return (
-            <primitive
-                object={scene}
-                position={[0, 0, 0]}
-                scale={[0.5, 0.5, 0.5]}
-            />
-        )
-    }
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -109,29 +92,9 @@ const Home = () => {
                         <img src="" alt="アイコン" />
                         <div>{post.user.name}</div>
                     </div>
-                    <Canvas style={{ background: 'gray' }}>
-                        {/* camera={{ position: [5, 5, 5], near: 0.05 }} */}
-                        <group>
-                            <Center>
-                                <Model />
-                            </Center>
-                        </group>
-                        <PerspectiveCamera
-                            makeDefault
-                            args={[
-                                35,
-                                window.innerWidth / window.innerHeight,
-                                0.1,
-                                2000,
-                            ]}
-                            position={[2, 2, 2]}
-                            fov={70}
-                        />
-                        <OrbitControls />
-                        <directionalLight position={[-10, 10, 10]} castShadow />
-                        <ambientLight intensity={1} />
-                        <pointLight position={[5, 5, 5]} />
-                    </Canvas>
+                    <Link href={`/view/${post.id}`}>
+                        <img src="" alt="サムネイル" />
+                    </Link>
                     <div className="flex">
                         <div className="flex mr-auto">
                             <img src="" alt="ハート" />
