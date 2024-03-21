@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('warehouses', function (Blueprint $table) {
             $table->id();
+            $table->string('thumbnail');
             $table->string('threed_data');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
