@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $followings = Follow::where('user_id',auth()->id())->get(['following_id'])->toArray();
+        $followings = Follow::where('user_id', auth()->id())->get(['following_id'])->toArray();
         $posts = Post::whereIn('user_id', $followings)
             ->with('user')
             ->with('comments.user')
@@ -24,8 +24,8 @@ class PostController extends Controller
             ->with('liked:name')
             ->latest()
             ->get();
-        
-        $account = User::where('id',auth()->id())
+
+        $account = User::where('id', auth()->id())
             ->with('account')
             ->get();
 
@@ -57,9 +57,21 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show($post_id)
     {
-        //
+        $post = Post::where('id', $post_id)
+            ->with('user.account')
+            ->with('comments.user')
+            ->with('warehouse')
+            ->with('liked:name')
+            ->latest()
+            ->get();
+
+        $account = User::where('id', auth()->id())
+            ->with('account')
+            ->get();
+
+        return response()->json(['post' => $post, 'account' => $account]);
     }
 
     /**
