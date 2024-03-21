@@ -14,19 +14,19 @@ class CommentSeeder extends Seeder
     public function run(): void
     {
         Comment::create([
-            'text' => '投稿に対するコメント',
-            'post_id' => 1,
-            'user_id' => 2,
+            'text' => 'Thanks for tagging along today!',
+            'post_id' => 2,
+            'user_id' => 1,
         ]);
         Comment::create([
-            'text' => '投稿に対するコメント2',
+            'text' => 'This is awesome!',
             'post_id' => 2,
             'user_id' => 3,
         ]);
         Comment::create([
-            'text' => '投稿に対するコメント3',
-            'post_id' => 2,
-            'user_id' => 1,
+            'text' => 'Thanks for tagging along today!',
+            'post_id' => 1,
+            'user_id' => 2,
         ]);
     }
 }

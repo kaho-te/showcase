@@ -14,22 +14,22 @@ class PostSeeder extends Seeder
     public function run(): void
     {
         Post::create([
-            'text' => '投稿時のコメント',
+            'text' => 'I don’t know why Figma doesn’t let me type in Japanese but here is an English sample ',
             'warehouse_id' => 1,
             'user_id' => 1,
         ]);
         Post::create([
-            'text' => '投稿時のコメント2',
+            'text' => 'I don’t know why Figma doesn’t let me type in Japanese but here is an English sample ',
             'warehouse_id' => 2,
             'user_id' => 2,
         ]);
         Post::create([
-            'text' => 'かっこいいモデルを見つけました',
+            'text' => 'I don’t know why Figma doesn’t let me type in Japanese but here is an English sample ',
             'warehouse_id' => 3,
             'user_id' => 3,
         ]);
         Post::create([
-            'text' => 'テスト投稿です',
+            'text' => 'I don’t know why Figma doesn’t let me type in Japanese but here is an English sample ',
             'warehouse_id' => 4,
             'user_id' => 1,
         ]);

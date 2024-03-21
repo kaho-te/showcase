@@ -14,22 +14,28 @@ class AccountSeeder extends Seeder
     public function run(): void
     {
         Account::create([
-            'icon' => 'dummy',
-            'mainstage_image' => 'dummy_stage',
-            'profile' => 'プロフィール文章１',
+            'icon' => 'IMG_1232.jpg',
+            'mainstage_image' => 'ShowCaseDemo.mp4',
+            'profile' => 'Here is a space to write something about yourself or your space design and ',
             'user_id' => 1,
         ]);
         Account::create([
-            'icon' => 'dummy',
-            'mainstage_image' => 'dummy_stage',
-            'profile' => 'プロフィール文章２',
+            'icon' => 'IMG_1234.png',
+            'mainstage_image' => 'ShowCaseDemo.mp4',
+            'profile' => 'Here is a space to write something about yourself or your space design and ',
             'user_id' => 2,
         ]);
         Account::create([
-            'icon' => 'dummy',
-            'mainstage_image' => 'dummy_stage',
-            'profile' => 'プロフィール文章3',
+            'icon' => 'IMG_1231.jpg',
+            'mainstage_image' => 'ShowCaseDemo.mp4',
+            'profile' => 'Here is a space to write something about yourself or your space design and ',
             'user_id' => 3,
+        ]);
+        Account::create([
+            'icon' => 'IMG_1233.jpg',
+            'mainstage_image' => 'ShowCaseDemo.mp4',
+            'profile' => 'Here is a space to write something about yourself or your space design and ',
+            'user_id' => 4,
         ]);
     }
 }

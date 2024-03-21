@@ -3,29 +3,36 @@ import laravelAxios from '@/lib/laravelAxios'
 import Head from 'next/head'
 import React, { useEffect, useRef, useState } from 'react'
 import { useAuth } from '@/hooks/auth'
+import Link from 'next/link'
 
 const Profile = ({ user_id }) => {
     const { user } = useAuth({ middleware: 'auth' })
     const [profiles, setProfiles] = useState([])
     const videoRef = useRef(null)
+    user_id = 2;
+    console.log(user);
 
     useEffect(() => {
         const fetchProfiles = async () => {
             try {
-                const response = await laravelAxios.get('api/account/' + user_id)
+                const response = await laravelAxios.get(
+                    'api/account/' + user_id,
+                )
 
                 setProfiles(response.data[0])
-                videoRef.current.src = 'http://localhost/storage/threed/' + user_id + '/' + response.data[0].account?.mainstage_image
+                videoRef.current.src =
+                    'http://localhost/storage/threed/' +
+                    user_id +
+                    '/' +
+                    response.data[0].account?.mainstage_image
                 videoRef.current?.play()
-                
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchProfiles() 
-        
+        fetchProfiles()
     }, [])
-    
+
     return (
         <AppLayout>
             <Head>
@@ -40,12 +47,11 @@ const Profile = ({ user_id }) => {
                     controls
                     loop
                     playsInline
-                    muted>
-                </video>
+                    muted></video>
             </div>
-            <div className="px-8 mt-5">
-                <div className="flex justify-around w-full items-center">
-                    <div className="icon w-1/4 ">
+            <div className="px-5 mt-5">
+                <div className="flex w-full items-center">
+                    <div className="icon w-2/5 ">
                         <img
                             src={
                                 'http://localhost/storage/image/' +
@@ -54,17 +60,38 @@ const Profile = ({ user_id }) => {
                             alt=""
                         />
                     </div>
-                    <div className="post-cnt w-1/4 text-center">
-                        <p className="font-bold">{profiles.posts_count}</p>
-                        <p className="">posts</p>
-                    </div>
-                    <div className="followers-cnt w-1/4 text-center">
-                        <p className="font-bold">{profiles.followers_count}</p>
-                        <p className="">followers</p>
-                    </div>
-                    <div className="items-cnt w-1/4 text-center">
-                        <p className="font-bold">{profiles.warehouses_count}</p>
-                        <p className="">items</p>
+                    <div className="w-full pl-3 text-center">
+                        <div className="flex justify-around ml-3">
+                            <div className="post-cnt text-center">
+                                <p className="font-bold">
+                                    {profiles.posts_count}
+                                </p>
+                                <p className="">posts</p>
+                            </div>
+                            <div className="followers-cnt text-center">
+                                <p className="font-bold">
+                                    {profiles.followers_count}
+                                </p>
+                                <p className="">followers</p>
+                            </div>
+                            <div className="items-cnt text-center">
+                                <p className="font-bold">
+                                    {profiles.warehouses_count}
+                                </p>
+                                <p className="">items</p>
+                            </div>
+                        </div>
+                        <div className="ml-2 mt-2  w-11/12 bg-gray-500 text-white rounded-2xl">
+                        {user?.id === user_id ? (
+                            <Link className="" href={`/setting`}>
+                                Setting
+                            </Link>
+                        ) : (
+                            <Link className="" href="#">
+                                Visit Main Stage
+                            </Link>
+                        )}
+                        </div>
                     </div>
                 </div>
                 <div className="mt-3">
@@ -98,7 +125,9 @@ const Profile = ({ user_id }) => {
                             <div className="w-full" key={index}>
                                 <img
                                     src={
-                                        'http://localhost/storage/threed/' + user_id + '/' + 
+                                        'http://localhost/storage/threed/' +
+                                        user_id +
+                                        '/' +
                                         post.warehouse.threed_data
                                     }
                                     alt=""
