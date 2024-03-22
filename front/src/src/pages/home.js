@@ -91,7 +91,7 @@ const Home = () => {
             </Head>
             <div>
                 {posts.map(post => (
-                    <div className='mx-5'>
+                    <div className="mx-5">
                         <div key={post.id}>
                             <div className="flex">
                                 <img src="" alt="アイコン" />
@@ -100,7 +100,7 @@ const Home = () => {
                             <Link href={`/view/${post.id}`}>
                                 <img src="" alt="サムネイル" />
                             </Link>
-                            <div className="mt-2 flex">
+                            <div className="my-2 flex">
                                 <div className="flex mr-auto">
                                     <img
                                         className="h-6"
@@ -145,13 +145,13 @@ const Home = () => {
                                 onClick={() => handleOpen(post.id)}>
                                 view all comments
                             </div>
-                            <div className="flex">
+                            <div className="flex items-center">
                                 <p className="font-bold mr-1">
                                     Nijitoshi NAKAJIMA
                                 </p>
                                 <p className="mr-auto">Thanks for tagging</p>
                                 <img
-                                    className="h-6"
+                                    className="h-3"
                                     src="http://localhost/storage/image/icon/LikeGray.png"
                                     alt="ハート"
                                 />
