@@ -8,7 +8,7 @@ const AppLayout = ({ header, children }) => {
         <div>
             <div className="min-h-screen">
                 {/* Page Content */}
-                <main className="">{children}</main>
+                <main>{children}</main>
             </div>
             <footer className="fixed bottom-0 mx-3 flex justify-between items-end w-full">
                 <Footer user={user} />
