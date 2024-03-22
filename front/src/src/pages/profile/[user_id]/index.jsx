@@ -23,9 +23,9 @@ const Profile = () => {
 
                 setProfiles(response.data[0])
                 videoRef.current.src =
-                    'http://localhost/storage/threed/' +
+                    'http://localhost/storage/warehouse/' +
                     user_id +
-                    '/' +
+                    '/threed/' +
                     response.data[0].account?.mainstage_image
                 videoRef.current?.play()
             } catch (error) {
@@ -56,8 +56,9 @@ const Profile = () => {
                 <div className="flex w-full items-center">
                     <div className="icon w-2/5 ">
                         <img
+                            style={{ borderRadius: '50%' }}
                             src={
-                                'http://localhost/storage/image/' +
+                                'http://localhost/storage/profile/' +
                                 profiles.account?.icon
                             }
                             alt=""
@@ -85,7 +86,7 @@ const Profile = () => {
                             </div>
                         </div>
                         <div className="ml-2 mt-2  w-11/12 bg-gray-500 text-white rounded-2xl">
-                        {user?.id === user_id ? (
+                        {user?.id == user_id ? (
                             <Link className="" href={`/setting`}>
                                 Setting
                             </Link>
@@ -104,14 +105,14 @@ const Profile = () => {
                 <div className="flex justify-around mt-7">
                     <div className="w-1/2 text-center">
                         <img
-                            src="http://localhost/storage/image/Icon/3DItemGray.png"
+                            src="http://localhost/storage/icon/3DItemGray.png"
                             alt=""
                             className="w-7 h-7 mx-auto"
                         />
                     </div>
                     <div className="w-1/2 text-center">
                         <img
-                            src="http://localhost/storage/image/Icon/360Gray.png"
+                            src="http://localhost/storage/icon/360Gray.png"
                             alt=""
                             className="w-7 h-7 mx-auto"
                         />
@@ -129,9 +130,9 @@ const Profile = () => {
                             <div className="w-full" key={index}>
                                 <img
                                     src={
-                                        'http://localhost/storage/image/' +
+                                        'http://localhost/storage/warehouse/' +
                                         user_id +
-                                        '/' +
+                                        '/thumbnail/' +
                                         post.warehouse.thumbnail
                                     }
                                     alt=""
