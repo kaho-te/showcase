@@ -10,6 +10,7 @@ const Home = () => {
     const [posts, setPosts] = useState([])
     const [open, setOpen] = useState(null)
     const [comment, setComment] = useState('')
+    const [likedPosts, setLikedPosts] = useState([])
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -22,6 +23,7 @@ const Home = () => {
         }
         fetchPosts()
     }, [])
+
 
     // Modalを開く関数
     const handleOpen = postId => setOpen(postId)
@@ -57,6 +59,39 @@ const Home = () => {
             console.log(error)
         }
     }
+
+    const handleLike = async (postId) => {
+        const isLiked = likedPosts.includes(postId);
+        try {
+            let response;
+            if (isLiked) {
+                // いいねを取り消す
+                response = await laravelAxios.delete(`/api/posts/${postId}/like`);
+                setLikedPosts(likedPosts.filter(id => id !== postId)); // いいね状態を更新
+            } else {
+                // いいねを追加する
+                response = await laravelAxios.post(`/api/posts/${postId}/like`);
+                setLikedPosts([...likedPosts, postId]); // いいね状態を更新
+            }
+            console.log(response.data);
+            // 必要に応じて他のUIの状態を更新
+            let updatedPosts;
+            if (!isLiked) {
+                // いいねを追加する処理
+                updatedPosts = posts.map(post =>
+                    post.id === postId ? { ...post, liked: [{}] } : post
+                );
+            } else {
+                // いいねを取り消す処理
+                updatedPosts = posts.map(post =>
+                    post.id === postId ? { ...post, liked: [] } : post
+                );
+            }
+            setPosts(updatedPosts); // 更新された投稿の配列で状態を更新
+        } catch (error) {
+            console.error('Like action failed:', error);
+        }
+    };
 
     return (
         <AppLayout>
@@ -121,12 +156,14 @@ const Home = () => {
                                                 className="h-6"
                                                 src="http://localhost/storage/icon/LikeGray.png"
                                                 alt="ハート"
+                                                onClick={() => handleLike(post.id)}
                                             />
                                         ) : (
                                             <img
                                                 className="h-6"
                                                 src="http://localhost/storage/icon/LikePink.png"
                                                 alt="ハート"
+                                                onClick={() => handleLike(post.id)}
                                             />
                                         )}
 
