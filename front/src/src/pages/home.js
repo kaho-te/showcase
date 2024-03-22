@@ -88,7 +88,7 @@ const Home = () => {
             <Head>
                 <title>home</title>
             </Head>
-            <div className='mb-20'>
+            <div className="mb-20">
                 {posts.map(post => (
                     <div key={post.id}>
                         <div className="mx-5 mt-8 mb-2">
@@ -116,11 +116,20 @@ const Home = () => {
                             <div className="mx-5">
                                 <div className="my-2 flex">
                                     <div className="flex mr-auto">
-                                        <img
-                                            className="h-6"
-                                            src="http://localhost/storage/icon/LikeGray.png"
-                                            alt="ハート"
-                                        />
+                                        {post.liked.length == 0 ? (
+                                            <img
+                                                className="h-6"
+                                                src="http://localhost/storage/icon/LikeGray.png"
+                                                alt="ハート"
+                                            />
+                                        ) : (
+                                            <img
+                                                className="h-6"
+                                                src="http://localhost/storage/icon/LikePink.png"
+                                                alt="ハート"
+                                            />
+                                        )}
+
                                         <img
                                             className="h-6 mx-2"
                                             src="http://localhost/storage/icon/CommentGray.png"
@@ -201,7 +210,9 @@ const Home = () => {
                                         {post.comments &&
                                             Array.isArray(post.comments) &&
                                             post.comments.map(comment => (
-                                                <div className='mb-3' key={comment.id}>
+                                                <div
+                                                    className="mb-3"
+                                                    key={comment.id}>
                                                     <div className="flex items-center">
                                                         <Link
                                                             className="mr-auto flex items-center"
