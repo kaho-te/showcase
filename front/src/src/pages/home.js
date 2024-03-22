@@ -148,11 +148,11 @@ const Home = () => {
                                         Kaho TERADA
                                     </span>
                                 </p>
-                                <div className="flex">
-                                    <div className="mr-1 font-bold">
-                                        {post.user.name}
-                                    </div>
-                                    <div>{post.text}</div>
+                                <div>
+                                    <span className="mr-1 font-bold">
+                                        {post.user.name + ' '}
+                                    </span>
+                                    {post.text}
                                 </div>
                                 <div
                                     className="text-gray-300"
