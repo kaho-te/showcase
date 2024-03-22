@@ -27,7 +27,7 @@ const Footer = ({ user }) => {
             </Link>
             <Link
                 className="w-1/6 h-8 flex justify-center item-center"
-                href="#">
+                href="/new-post">
                 <img
                     src="http://localhost/storage/image/icon/NewPostGray.png"
                     alt=""
