@@ -54,7 +54,7 @@ const NewPost = () => {
     }
 
     useEffect(() => {
-        const fetchProfiles = async () => {
+        const fetchWarehouse = async () => {
             try {
                 const response = await laravelAxios.get(`api/warehouses`)
                 setWarehouseList(response.data)
@@ -62,7 +62,7 @@ const NewPost = () => {
                 console.log(error)
             }
         }
-        fetchProfiles()
+        fetchWarehouse()
     }, [])
 
     useEffect(() => {
