@@ -53,7 +53,9 @@ const View = () => {
 
     return (
         <div>
-            <Link href="/home">✕</Link>
+            <div className="mt-2 mx-3">
+                <Link href="/home">✕</Link>
+            </div>
             <Canvas
                 style={{
                     width: '100vw',
@@ -77,25 +79,58 @@ const View = () => {
                 <ambientLight intensity={1} />
                 <pointLight position={[5, 5, 5]} />
             </Canvas>
-            <div className="mt-5 flex">
-                <div className="flex mr-auto">
-                    <img src="" alt="ハート" />
-                    <img src="" alt="コメント" />
-                    <img src="" alt="紙飛行機" />
+            <div className='mx-5'>
+                <div className="my-5 flex">
+                    <div className="flex mr-auto">
+                        <img
+                            className="h-6"
+                            src="http://localhost/storage/icon/LikeGray.png"
+                            alt="ハート"
+                        />
+                        <img
+                            className="h-6 mx-2"
+                            src="http://localhost/storage/icon/CommentGray.png"
+                            alt="コメント"
+                        />
+                        <img
+                            className="h-6"
+                            src="http://localhost/storage/icon/MessageGray.png"
+                            alt="紙飛行機"
+                        />
+                    </div>
+                    <img
+                        className="h-6"
+                        src="http://localhost/storage/icon/FavoriteGray.png"
+                        alt="ブックマーク"
+                    />
                 </div>
-                <img src="" alt="ブックマーク" />
+                <div className="flex">
+                    <Link href={post ? `/profile/${post.user.id}` : ''}>
+                        <div className="flex items-center">
+                            <img
+                                className="w-10"
+                                style={{ borderRadius: '50%' }}
+                                src={
+                                    post
+                                        ? `http://localhost/storage/profile/${post.user.account.icon}`
+                                        : ''
+                                }
+                                alt="アイコン"
+                            />
+                            <div className="ml-2 font-bold">
+                                {post ? post.user.name : ''}
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+                <div>{post ? post.text : ''}</div>
+                <p className="flex">
+                    Liked by
+                    <span className="mx-1 font-bold">Ryotaro ISHII</span>
+                    and
+                    <span className="ml-1 font-bold">Kaho TERADA</span>
+                </p>
             </div>
-            <div className="flex">
-                <img src="" alt="アイコン" />
-                <div>{post ? post.user.name : ''}</div>
-            </div>
-            <div>{post ? post.text : ''}</div>
-            <p className="flex">
-                Liked by
-                <span className="mx-1 font-bold">Ryotaro ISHII</span>
-                and
-                <span className="ml-1 font-bold">Kaho TERADA</span>
-            </p>
         </div>
     )
 }
