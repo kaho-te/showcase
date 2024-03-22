@@ -2,7 +2,7 @@ import AppLayout from '@/components/Layouts/AppLayout'
 import laravelAxios from '@/lib/laravelAxios'
 import Head from 'next/head'
 import Link from 'next/link'
-import { use, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import 'swiper/css'
 import { Box, Button, Modal, TextareaAutosize, Typography } from '@mui/material'
 
