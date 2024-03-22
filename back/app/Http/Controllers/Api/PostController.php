@@ -21,7 +21,10 @@ class PostController extends Controller
             ->with('user.account')
             ->with('comments.user.account')
             ->with('warehouse')
-            ->with('liked:name')
+            // ->with('liked:name')
+            ->with(['liked' => function ($query) {
+                $query->where('users.id', auth()->id());
+            }])
             ->latest()
             ->get();
 
