@@ -71,7 +71,7 @@ const NewPost = () => {
     }, [])
 
     return (
-        <div>
+        <div className='mt-2'>
             {postFlag ? (
                 <div className="mx-3 mb-6 flex justify-center">
                     <div className="absolute left-3" onClick={handlePostFlag}>
@@ -137,9 +137,9 @@ const NewPost = () => {
             ) : (
                 <div>
                     <div className="mr-2 mb-2 flex justify-end items-center">
-                        <img className="mx-2" src="" alt="カメラ" />
+                        <img className="mx-2 h-6" src="http://localhost/storage/icon/CameraGray.png" alt="カメラ" />
                         <button
-                            className="bg-gray-700 hover:bg-gray-600 text-white rounded px-4 py-2"
+                            className="bg-gray-700 hover:bg-gray-600 text-white rounded px-2 mx-5 my-2"
                             onClick={handleNewPost}>
                             Manage
                         </button>
@@ -157,7 +157,7 @@ const NewPost = () => {
                                 onClick={() => handleWarehouseId(warehouse.id)}>
                                 <img
                                     src={
-                                        'http://localhost/storage/image/Thumbnail/01WhiteHorse.png'
+                                        `http://localhost/storage/warehouse/1/thumbnail/${warehouse.thumbnail}`
                                     }
                                     alt=""
                                 />
