@@ -1,10 +1,10 @@
 import AppLayout from '@/components/Layouts/AppLayout'
 import laravelAxios from '@/lib/laravelAxios'
 import Head from 'next/head'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import 'swiper/css'
 import { Box, Button, Modal, TextareaAutosize, Typography } from '@mui/material'
-import Link from 'next/link'
 
 const Home = () => {
     const [posts, setPosts] = useState([])
@@ -15,7 +15,6 @@ const Home = () => {
         const fetchPosts = async () => {
             try {
                 const response = await laravelAxios.get('api/posts')
-                console.log(response.data)
                 setPosts(response.data.post)
             } catch (error) {
                 console.log(error)
@@ -62,23 +61,23 @@ const Home = () => {
     return (
         <AppLayout>
             <header className="bg-white">
-                <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto pt-2 px-4 sm:px-6 lg:px-8">
                     <div className="font-semibold text-xl text-gray-800 leading-tight">
                         <div className="flex justify-end">
                             <img
                                 className="h-6 mr-auto"
-                                src="http://localhost/storage/image/icon/ShowcaseLogo.png"
+                                src="http://localhost/storage/icon/ShowcaseLogo.png"
                                 alt=""
                             />
                             <div className="flex">
                                 <img
                                     className="mr-2 h-6"
-                                    src="http://localhost/storage/image/icon/LikeGray.png"
+                                    src="http://localhost/storage/icon/LikeGray.png"
                                     alt="ハート"
                                 />
                                 <img
                                     className="h-6"
-                                    src="http://localhost/storage/image/icon/MessageGray.png"
+                                    src="http://localhost/storage/icon/MessageGray.png"
                                     alt="紙飛行機"
                                 />
                             </div>
@@ -91,70 +90,88 @@ const Home = () => {
             </Head>
             <div>
                 {posts.map(post => (
-                    <div className="mx-5">
-                        <div key={post.id}>
-                            <div className="flex">
-                                <img src="" alt="アイコン" />
-                                <div>{post.user.name}</div>
-                            </div>
-                            <Link href={`/view/${post.id}`}>
-                                <img src="" alt="サムネイル" />
+                    <div key={post.id}>
+                        <div className="mx-5 mt-8 mb-2">
+                            <Link href={`/profile/${post.user.id}`}>
+                                <div className="flex items-center">
+                                    <img
+                                        className="w-10"
+                                        style={{ borderRadius: '50%' }}
+                                        src={`http://localhost/storage/profile/${post.user.account.icon}`}
+                                        alt="アイコン"
+                                    />
+                                    <div className="ml-2 font-bold">
+                                        {post.user.name}
+                                    </div>
+                                </div>
                             </Link>
-                            <div className="my-2 flex">
-                                <div className="flex mr-auto">
+                        </div>
+                        <div key={post.id}>
+                            <Link href={`/view/${post.id}`}>
+                                <img
+                                    src={`http://localhost/storage/warehouse/1/thumbnail/${post.warehouse.thumbnail}`}
+                                    alt="サムネイル"
+                                />
+                            </Link>
+                            <div className="mx-5">
+                                <div className="my-2 flex">
+                                    <div className="flex mr-auto">
+                                        <img
+                                            className="h-6"
+                                            src="http://localhost/storage/icon/LikeGray.png"
+                                            alt="ハート"
+                                        />
+                                        <img
+                                            className="h-6 mx-2"
+                                            src="http://localhost/storage/icon/CommentGray.png"
+                                            alt="コメント"
+                                        />
+                                        <img
+                                            className="h-6"
+                                            src="http://localhost/storage/icon/MessageGray.png"
+                                            alt="紙飛行機"
+                                        />
+                                    </div>
                                     <img
                                         className="h-6"
-                                        src="http://localhost/storage/image/icon/LikeGray.png"
+                                        src="http://localhost/storage/icon/FavoriteGray.png"
+                                        alt="ブックマーク"
+                                    />
+                                </div>
+                                <p className="flex">
+                                    Liked by
+                                    <span className="mx-1 font-bold">
+                                        Ryotaro ISHII
+                                    </span>
+                                    and
+                                    <span className="ml-1 font-bold">
+                                        Kaho TERADA
+                                    </span>
+                                </p>
+                                <div className="flex">
+                                    <div className="mr-1 font-bold">
+                                        {post.user.name}
+                                    </div>
+                                    <div>{post.text}</div>
+                                </div>
+                                <div
+                                    className="text-gray-300"
+                                    onClick={() => handleOpen(post.id)}>
+                                    view all comments
+                                </div>
+                                <div className="flex items-center">
+                                    <p className="font-bold mr-1">
+                                        Nijitoshi NAKAJIMA
+                                    </p>
+                                    <p className="mr-auto">
+                                        Thanks for tagging
+                                    </p>
+                                    <img
+                                        className="h-3"
+                                        src="http://localhost/storage/icon/LikeGray.png"
                                         alt="ハート"
                                     />
-                                    <img
-                                        className="h-6 mx-2"
-                                        src="http://localhost/storage/image/icon/CommentGray.png"
-                                        alt="コメント"
-                                    />
-                                    <img
-                                        className="h-6"
-                                        src="http://localhost/storage/image/icon/MessageGray.png"
-                                        alt="紙飛行機"
-                                    />
                                 </div>
-                                <img
-                                    className="h-6"
-                                    src="http://localhost/storage/image/icon/FavoriteGray.png"
-                                    alt="ブックマーク"
-                                />
-                            </div>
-                            <p className="flex">
-                                Liked by
-                                <span className="mx-1 font-bold">
-                                    Ryotaro ISHII
-                                </span>
-                                and
-                                <span className="ml-1 font-bold">
-                                    Kaho TERADA
-                                </span>
-                            </p>
-                            <div className="flex">
-                                <div className="mr-1 font-bold">
-                                    {post.user.name}
-                                </div>
-                                <div>{post.text}</div>
-                            </div>
-                            <div
-                                className="text-gray-300"
-                                onClick={() => handleOpen(post.id)}>
-                                view all comments
-                            </div>
-                            <div className="flex items-center">
-                                <p className="font-bold mr-1">
-                                    Nijitoshi NAKAJIMA
-                                </p>
-                                <p className="mr-auto">Thanks for tagging</p>
-                                <img
-                                    className="h-3"
-                                    src="http://localhost/storage/image/icon/LikeGray.png"
-                                    alt="ハート"
-                                />
                             </div>
                             <Modal
                                 open={open === post.id}
@@ -184,20 +201,30 @@ const Home = () => {
                                         {post.comments &&
                                             Array.isArray(post.comments) &&
                                             post.comments.map(comment => (
-                                                <div key={comment.id}>
-                                                    <div className="flex">
-                                                        <div>
+                                                <div className='mb-3' key={comment.id}>
+                                                    <div className="flex items-center">
+                                                        <Link
+                                                            className="mr-auto flex items-center"
+                                                            href={`/profile/${post.user.id}`}>
                                                             <img
-                                                                src=""
+                                                                className="mr-2 w-10"
+                                                                style={{
+                                                                    borderRadius:
+                                                                        '50%',
+                                                                }}
+                                                                src={`http://localhost/storage/profile/${comment.user.account.icon}`}
                                                                 alt="アイコン"
                                                             />
-                                                        </div>
-                                                        <div className="font-bold mr-auto">
-                                                            {comment.user.name}
-                                                        </div>
+                                                            <div className="font-bold mr-auto">
+                                                                {
+                                                                    comment.user
+                                                                        .name
+                                                                }
+                                                            </div>
+                                                        </Link>
                                                         <img
                                                             className="h-3"
-                                                            src="http://localhost/storage/image/icon/LikeGray.png"
+                                                            src="http://localhost/storage/icon/LikeGray.png"
                                                             alt="ハート"
                                                         />
                                                     </div>

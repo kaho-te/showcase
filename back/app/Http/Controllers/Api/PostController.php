@@ -18,8 +18,8 @@ class PostController extends Controller
     {
         $followings = Follow::where('user_id', auth()->id())->get(['following_id'])->toArray();
         $posts = Post::whereIn('user_id', $followings)
-            ->with('user')
-            ->with('comments.user')
+            ->with('user.account')
+            ->with('comments.user.account')
             ->with('warehouse')
             ->with('liked:name')
             ->latest()
@@ -61,7 +61,7 @@ class PostController extends Controller
     {
         $post = Post::where('id', $post_id)
             ->with('user.account')
-            ->with('comments.user')
+            ->with('comments.user.account')
             ->with('warehouse')
             ->with('liked:name')
             ->latest()

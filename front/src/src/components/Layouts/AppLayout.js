@@ -10,7 +10,7 @@ const AppLayout = ({ header, children }) => {
                 {/* Page Content */}
                 <main>{children}</main>
             </div>
-            <footer className="fixed bottom-0 mx-3 flex justify-between items-end w-full">
+            <footer className="fixed bottom-0 bg-white p-3 flex justify-between items-end w-full">
                 <Footer user={user} />
             </footer>
         </div>
