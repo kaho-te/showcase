@@ -88,7 +88,7 @@ const Home = () => {
             <Head>
                 <title>home</title>
             </Head>
-            <div>
+            <div className='mb-20'>
                 {posts.map(post => (
                     <div key={post.id}>
                         <div className="mx-5 mt-8 mb-2">
