@@ -13,7 +13,7 @@ const Footer = ({ user }) => {
                 className="w-1/6 h-8 flex justify-center item-center"
                 href="#">
                 <img
-                    src="http://localhost/storage/image/icon/MainStageGray.png"
+                    src="http://localhost/storage/icon/MainStageGray.png"
                     alt=""
                 />
             </Link>
@@ -21,7 +21,7 @@ const Footer = ({ user }) => {
                 className="w-1/6 h-8 flex justify-center item-center"
                 href="#">
                 <img
-                    src="http://localhost/storage/image/icon/WorldGray.png"
+                    src="http://localhost/storage/icon/WorldGray.png"
                     alt=""
                 />
             </Link>
@@ -29,7 +29,7 @@ const Footer = ({ user }) => {
                 className="w-1/6 h-8 flex justify-center item-center"
                 href="/new-post">
                 <img
-                    src="http://localhost/storage/image/icon/NewPostGray.png"
+                    src="http://localhost/storage/icon/NewPostGray.png"
                     alt=""
                 />
             </Link>
@@ -37,7 +37,7 @@ const Footer = ({ user }) => {
                 className="w-1/6 h-8 flex justify-center item-center"
                 href="/home">
                 <img
-                    src="http://localhost/storage/image/icon/SnsGray.png"
+                    src="http://localhost/storage/icon/SnsGray.png"
                     alt=""
                 />
             </Link>
@@ -45,7 +45,7 @@ const Footer = ({ user }) => {
                 className="w-1/6 h-8 flex justify-center item-center"
                 href={user ? `/profile/${user.id}` : '#'}>
                 <img
-                    src="http://localhost/storage/image/icon/ProfileGray.png"
+                    src="http://localhost/storage/icon/ProfileGray.png"
                     alt=""
                 />
             </Link>

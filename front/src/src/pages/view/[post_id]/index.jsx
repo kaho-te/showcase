@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import laravelAxios from '@/lib/laravelAxios'
+import Link from 'next/link'
 import { Canvas } from '@react-three/fiber'
 import {
     Center,
@@ -52,7 +53,7 @@ const View = () => {
 
     return (
         <div>
-            <div className="mb-6">✕</div>
+            <Link href="/home">✕</Link>
             <Canvas
                 style={{
                     width: '100vw',
