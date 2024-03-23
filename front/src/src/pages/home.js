@@ -171,6 +171,7 @@ const Home = () => {
                                             className="h-6 mx-2"
                                             src="http://localhost/storage/icon/CommentGray.png"
                                             alt="コメント"
+                                            onClick={() => handleOpen(post.id)}
                                         />
                                         <img
                                             className="h-6"
