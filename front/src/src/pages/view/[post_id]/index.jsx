@@ -18,7 +18,7 @@ const View = () => {
     const [aspectRatio, setAspectRatio] = useState(1) // アスペクト比の状態を追加
 
     const Model = () => {
-        const { scene } = useGLTF('/threed/3/uchiwa_fan.glb')
+        const { scene } = useGLTF(`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/warehouse/1/threed/01.glb`)
         return (
             <primitive
                 object={scene}
@@ -84,23 +84,23 @@ const View = () => {
                     <div className="flex mr-auto">
                         <img
                             className="h-6"
-                            src="http://localhost/storage/icon/LikeGray.png"
+                            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/icon/LikeGray.png`}
                             alt="ハート"
                         />
                         <img
                             className="h-6 mx-2"
-                            src="http://localhost/storage/icon/CommentGray.png"
+                            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/icon/CommentGray.png`}
                             alt="コメント"
                         />
                         <img
                             className="h-6"
-                            src="http://localhost/storage/icon/MessageGray.png"
+                            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/icon/MessageGray.png`}
                             alt="紙飛行機"
                         />
                     </div>
                     <img
                         className="h-6"
-                        src="http://localhost/storage/icon/FavoriteGray.png"
+                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/icon/FavoriteGray.png`}
                         alt="ブックマーク"
                     />
                 </div>
@@ -112,7 +112,7 @@ const View = () => {
                                 style={{ borderRadius: '50%' }}
                                 src={
                                     post
-                                        ? `http://localhost/storage/profile/${post.user.account.icon}`
+                                        ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/profile/${post.user.account.icon}`
                                         : ''
                                 }
                                 alt="アイコン"
