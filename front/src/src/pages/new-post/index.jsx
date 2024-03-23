@@ -19,7 +19,7 @@ const NewPost = () => {
     const [aspectRatio, setAspectRatio] = useState(1) // アスペクト比の状態を追加
 
     const Model = () => {
-        const { scene } = useGLTF('/threed/3/uchiwa_fan.glb')
+        const { scene } = useGLTF(`/threed/3/uchiwa_fan.glb`)
         return (
             <primitive
                 object={scene}
@@ -137,7 +137,7 @@ const NewPost = () => {
             ) : (
                 <div>
                     <div className="mr-2 mb-2 flex justify-end items-center">
-                        <img className="mx-2 h-6" src="http://localhost/storage/icon/CameraGray.png" alt="カメラ" />
+                        <img className="mx-2 h-6" src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/icon/CameraGray.png`} alt="カメラ" />
                         <button
                             className="bg-gray-700 hover:bg-gray-600 text-white rounded px-2 mx-5 my-2"
                             onClick={handleNewPost}>
@@ -157,7 +157,7 @@ const NewPost = () => {
                                 onClick={() => handleWarehouseId(warehouse.id)}>
                                 <img
                                     src={
-                                        `http://localhost/storage/warehouse/1/thumbnail/${warehouse.thumbnail}`
+                                        `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/warehouse/1/thumbnail/${warehouse.thumbnail}`
                                     }
                                     alt=""
                                 />

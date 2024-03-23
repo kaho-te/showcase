@@ -18,7 +18,8 @@ const View = () => {
     const [aspectRatio, setAspectRatio] = useState(1) // アスペクト比の状態を追加
 
     const Model = () => {
-        const { scene } = useGLTF(`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/warehouse/1/threed/01.glb`)
+        const { scene } = useGLTF('/threed/3/uchiwa_fan.glb')
+        // const { scene } = useGLTF(`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/warehouse/1/threed/01.glb`)
         return (
             <primitive
                 object={scene}
