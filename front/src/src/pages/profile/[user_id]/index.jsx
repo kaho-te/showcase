@@ -23,7 +23,7 @@ const Profile = () => {
 
                 setProfiles(response.data[0])
                 videoRef.current.src =
-                    'http://localhost/storage/warehouse/' +
+                    `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/warehouse/` +
                     user_id +
                     '/threed/' +
                     response.data[0].account?.mainstage_image
@@ -58,7 +58,7 @@ const Profile = () => {
                         <img
                             style={{ borderRadius: '50%' }}
                             src={
-                                'http://localhost/storage/profile/' +
+                                `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/profile/` +
                                 profiles.account?.icon
                             }
                             alt=""
@@ -105,14 +105,14 @@ const Profile = () => {
                 <div className="flex justify-around mt-7">
                     <div className="w-1/2 text-center">
                         <img
-                            src="http://localhost/storage/icon/3DItemGray.png"
+                            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/icon/3DItemGray.png`}
                             alt=""
                             className="w-7 h-7 mx-auto"
                         />
                     </div>
                     <div className="w-1/2 text-center">
                         <img
-                            src="http://localhost/storage/icon/360Gray.png"
+                            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/icon/360Gray.png`}
                             alt=""
                             className="w-7 h-7 mx-auto"
                         />
@@ -130,7 +130,7 @@ const Profile = () => {
                             <div className="w-full" key={index}>
                                 <img
                                     src={
-                                        'http://localhost/storage/warehouse/' +
+                                        `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/warehouse/` +
                                         user_id +
                                         '/thumbnail/' +
                                         post.warehouse.thumbnail

@@ -101,18 +101,18 @@ const Home = () => {
                         <div className="flex justify-end">
                             <img
                                 className="h-6 mr-auto"
-                                src="http://localhost/storage/icon/ShowcaseLogo.png"
+                                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/icon/ShowcaseLogo.png`}
                                 alt=""
                             />
                             <div className="flex">
                                 <img
                                     className="mr-2 h-6"
-                                    src="http://localhost/storage/icon/LikeGray.png"
+                                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/icon/LikeGray.png`}
                                     alt="ハート"
                                 />
                                 <img
                                     className="h-6"
-                                    src="http://localhost/storage/icon/MessageGray.png"
+                                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/icon/MessageGray.png`}
                                     alt="紙飛行機"
                                 />
                             </div>
@@ -132,7 +132,7 @@ const Home = () => {
                                     <img
                                         className="w-10"
                                         style={{ borderRadius: '50%' }}
-                                        src={`http://localhost/storage/profile/${post.user.account.icon}`}
+                                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/profile/${post.user.account.icon}`}
                                         alt="アイコン"
                                     />
                                     <div className="ml-2 font-bold">
@@ -144,7 +144,7 @@ const Home = () => {
                         <div key={post.id}>
                             <Link href={`/view/${post.id}`}>
                                 <img
-                                    src={`http://localhost/storage/warehouse/1/thumbnail/${post.warehouse.thumbnail}`}
+                                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/warehouse/1/thumbnail/${post.warehouse.thumbnail}`}
                                     alt="サムネイル"
                                 />
                             </Link>
@@ -154,14 +154,14 @@ const Home = () => {
                                         {post.liked.length == 0 ? (
                                             <img
                                                 className="h-6"
-                                                src="http://localhost/storage/icon/LikeGray.png"
+                                                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/icon/LikeGray.png`}
                                                 alt="ハート"
                                                 onClick={() => handleLike(post.id)}
                                             />
                                         ) : (
                                             <img
                                                 className="h-6"
-                                                src="http://localhost/storage/icon/LikePink.png"
+                                                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/icon/LikePink.png`}
                                                 alt="ハート"
                                                 onClick={() => handleLike(post.id)}
                                             />
@@ -169,19 +169,19 @@ const Home = () => {
 
                                         <img
                                             className="h-6 mx-2"
-                                            src="http://localhost/storage/icon/CommentGray.png"
+                                            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/icon/CommentGray.png`}
                                             alt="コメント"
                                             onClick={() => handleOpen(post.id)}
                                         />
                                         <img
                                             className="h-6"
-                                            src="http://localhost/storage/icon/MessageGray.png"
+                                            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/icon/MessageGray.png`}
                                             alt="紙飛行機"
                                         />
                                     </div>
                                     <img
                                         className="h-6"
-                                        src="http://localhost/storage/icon/FavoriteGray.png"
+                                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/icon/FavoriteGray.png`}
                                         alt="ブックマーク"
                                     />
                                 </div>
@@ -215,7 +215,7 @@ const Home = () => {
                                     </p>
                                     <img
                                         className="h-3"
-                                        src="http://localhost/storage/icon/LikeGray.png"
+                                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/icon/LikeGray.png`}
                                         alt="ハート"
                                     />
                                 </div>
@@ -261,7 +261,7 @@ const Home = () => {
                                                                     borderRadius:
                                                                         '50%',
                                                                 }}
-                                                                src={`http://localhost/storage/profile/${comment.user.account.icon}`}
+                                                                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/profile/${comment.user.account.icon}`}
                                                                 alt="アイコン"
                                                             />
                                                             <div className="font-bold mr-auto">
@@ -273,7 +273,7 @@ const Home = () => {
                                                         </Link>
                                                         <img
                                                             className="h-3"
-                                                            src="http://localhost/storage/icon/LikeGray.png"
+                                                            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/icon/LikeGray.png`}
                                                             alt="ハート"
                                                         />
                                                     </div>
