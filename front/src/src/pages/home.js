@@ -144,7 +144,7 @@ const Home = () => {
                         <div key={post.id}>
                             <Link href={`/view/${post.id}`}>
                                 <img
-                                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/warehouse/1/thumbnail/${post.warehouse.thumbnail}`}
+                                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/warehouse/${post.user_id}/thumbnail/${post.warehouse.thumbnail}`}
                                     alt="サムネイル"
                                 />
                             </Link>
