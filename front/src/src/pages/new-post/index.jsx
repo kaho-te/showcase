@@ -9,10 +9,11 @@ import {
     PerspectiveCamera,
     useGLTF,
 } from '@react-three/drei'
+import { useAuth } from '@/hooks/auth'
 
 const NewPost = () => {
+    const { user } = useAuth({ middleware: 'auth' })
     const [postFlag, setPostFlag] = useState(false)
-    const [scenePath, setScenePath] = useState('01.glb')
     const [warehouseList, setWarehouseList] = useState([])
     const [text, setText] = useState('')
     const [viewTreed, setViewTreed] = useState(warehouseList)
@@ -53,7 +54,6 @@ const NewPost = () => {
             const fetchWarehouse = async () => {
                 try {
                     const response = await laravelAxios.get(`api/warehouses`)
-                    console.log(response.data)
                     setWarehouseList(response.data)
                 } catch (error) {
                     console.log(error)
@@ -70,7 +70,7 @@ const NewPost = () => {
     const Model = () => {
         if (!viewTreed[0]?.threed_data) return null
         const { scene } = useGLTF(
-            `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/warehouse/${post.user_id}/threed/${viewTreed[0]?.threed_data}`,
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/warehouse/${user.id}/threed/${viewTreed[0]?.threed_data}`,
         )
         return (
             <primitive
@@ -175,7 +175,7 @@ const NewPost = () => {
                                         handleWarehouseId(warehouse.id)
                                     }>
                                     <img
-                                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/warehouse/${post.user_id}/thumbnail/${warehouse.thumbnail}`}
+                                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/warehouse/${user.id}/thumbnail/${warehouse.thumbnail}`}
                                         alt=""
                                     />
                                 </div>
