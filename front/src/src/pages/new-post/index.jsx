@@ -70,7 +70,7 @@ const NewPost = () => {
     const Model = () => {
         if (!viewTreed[0]?.threed_data) return null
         const { scene } = useGLTF(
-            `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/warehouse/1/threed/${viewTreed[0]?.threed_data}`,
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/warehouse/${post.user_id}/threed/${viewTreed[0]?.threed_data}`,
         )
         return (
             <primitive
@@ -175,7 +175,7 @@ const NewPost = () => {
                                         handleWarehouseId(warehouse.id)
                                     }>
                                     <img
-                                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/warehouse/1/thumbnail/${warehouse.thumbnail}`}
+                                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/warehouse/${post.user_id}/thumbnail/${warehouse.thumbnail}`}
                                         alt=""
                                     />
                                 </div>

@@ -43,7 +43,7 @@ const View = () => {
     const Model = () => {
         // const { scene } = useGLTF('/threed/3/uchiwa_fan.glb')
         const { scene } = useGLTF(
-            `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/warehouse/1/threed/${post.warehouse.threed_data}`,
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/warehouse/${post.user_id}/threed/${post.warehouse.threed_data}`,
         )
         return (
             <primitive
