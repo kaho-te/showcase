@@ -49,7 +49,7 @@ const View = () => {
             <primitive
                 object={scene}
                 position={[0, 0, 0]}
-                scale={[0.5, 0.5, 0.5]}
+                scale={[1, 1, 1]}
             />
         )
     }
