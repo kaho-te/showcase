@@ -15,6 +15,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 
                 router.push('/verify-email')
             }),
+    
     )
 
     const csrf = () => laravelAxios.get('/sanctum/csrf-cookie')
@@ -25,13 +26,25 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
         setErrors([])
 
         laravelAxios
-            .post('/register', props)
-            .then(() => mutate())
-            .catch(error => {
+            .post('api/register', props)
+            .then(res => {
+                if (res.data){
+                    localStorage.setItem('token', res.data.access_token);
+                    // if (shouldRemember){
+                    //     secureLocalStorage.setItem('user_data', res.data);
+                    // }else{
+                    //     encryptSessionData('user_data', res.data);
+                    // }
+                mutate('/api/user')
+                }
+            })
+            .catch(error =>
+            {
                 if (error.response.status !== 422) throw error
 
                 setErrors(error.response.data.errors)
-            })
+            }
+            )
     }
 
     const login = async ({ setErrors, setStatus, ...props }) => {
@@ -41,8 +54,14 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
         setStatus(null)
 
         laravelAxios
-            .post('/login', props)
-            .then(() => mutate())
+            .post('api/login', props)
+            .then((response) => {
+                // トークンをローカルストレージに保存
+                localStorage.setItem('token', response.data.access_token);
+                // ユーザー情報をSWRのキャッシュに設定
+                mutate('/api/user');
+                console.log(response, "response")
+            })
             .catch(error => {
                 if (error.response.status !== 422) throw error
 
@@ -92,7 +111,12 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 
     const logout = async () => {
         if (!error) {
-            await laravelAxios.post('/logout').then(() => mutate())
+            laravelAxios.post('/api/logout').then(() => {
+                localStorage.removeItem('token'); // トークンをローカルストレージから削除
+                mutate() // Ensure the user state is reset
+            }).catch(error => {
+                console.error('Logout failed:', error);
+            });
         }
 
         window.location.pathname = '/login'
